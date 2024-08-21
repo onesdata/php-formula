@@ -36,6 +36,9 @@
     {% endif %}
 {% endif %}
 
+{% set pkgs = pkgs | unique %}
+{% set specials = specials | unique %}
+
 {% if grains['os_family'] == "Debian" and (state == 'cli' or state == 'fpm' or state == 'php') %}
   {% set use_external_repo = salt['pillar.get']('php:use_external_repo', False) %}
 
